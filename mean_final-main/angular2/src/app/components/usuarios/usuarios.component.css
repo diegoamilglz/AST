@@ -1,0 +1,16 @@
+select{
+    display: block;
+}
+
+
+.row .col.s8{
+    width: 100%;
+}
+
+/* Cambiar la posición de los toasts a la parte superior 
+#toast-container {
+    top: 10px;
+    right: 50%; 
+    transform: translateX(50%); 
+    bottom: auto;  
+  }*/

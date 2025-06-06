@@ -1,0 +1,157 @@
+<app-navbar></app-navbar>
+<div class="row">
+    <div class=" card ">
+        <div class="row col s3 offset-s3">
+            <label for="" style="font-size: 16px;">Tu ID de administrador:</label>
+            <input  type="text" [(ngModel)]="ID_cliente"> 
+        </div>   
+        <div class=" card-content col s6 offset-s3">
+            
+            <form #monitorForm="ngForm" novalidate (ngSubmit)="addMonitor(monitorForm) ">
+                <div class="row">
+                    <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="monitoresservice.selectedMonitor._id">
+                    
+                    <div class="row">
+                        <div class=" col s6">
+                        <input required class="validate" type="text" name="marca" #marca="ngModel" [(ngModel)]="monitoresservice.selectedMonitor.marca" placeholder="Marca">
+                        <label>Marca</label>
+                       
+                    </div>
+                    <div class="col s6">
+                        <input required class="validate" type="text" name="modelo" #modelo="ngModel" [(ngModel)]="monitoresservice.selectedMonitor.modelo" placeholder="Modelo">
+                        <label for="modelo">Modelo</label>
+                    </div>
+                </div>
+                        
+                    <div class="row">
+                        <div class="col s6">
+                            <div >
+                                <label>Panel</label>   
+                            </div>
+                            <div>
+                                <select ngDefaultControl class="browser-default"  name="tipo_panel" #tipo_panel="ngModel" [(ngModel)]="monitoresservice.selectedMonitor.tipo_panel" >
+                                    <option value="" disabled selected>Tipo de Panel</option>
+                                    <option value="TN">TN</option>
+                                    <option value="VA">VA</option>
+                                    <option value="IPS">IPS</option>
+                                    <option value="OLED">OLED</option>
+                                </select> 
+                            </div>
+                        </div>
+                       
+                       
+
+                    </div>
+                    <div class="row">
+                        <div class="col s6">
+                                <input required class="validate" type="number" name="frecuencia" #frecuencia="ngModel" [(ngModel)]="monitoresservice.selectedMonitor.frecuencia" placeholder="Frecuencia">
+                                <label for="frecuencia">Frecuencia</label>
+                        </div>                 
+                        <div class="col s6">
+                            <textarea class="materialize-textarea" [(ngModel)]="monitoresservice.selectedMonitor.descripcion" name="descripcion" placeholder="Descripción"></textarea>
+                            <label for="descripcion">Descripción</label>
+                            
+                          </div>      
+                    </div>
+
+                    <div class="row m6">
+                        <div class="col s6">
+                            <input required type="number" name="cantidad" #cantidad="ngModel" [(ngModel)]="monitoresservice.selectedMonitor.cantidad" placeholder="cantidad">
+                            <label for="cantidad">Cantidad</label>
+                        </div>
+                        <div class="col s6">
+                            <input required type="number" name="precio" #precio="ngModel" [(ngModel)]="monitoresservice.selectedMonitor.precio" placeholder="Precio">
+                            <label for="precio">Precio</label>
+                        </div>
+                    </div>
+<!-- 
+                    <div class="row m6">
+                        <div class="input-field col s6">
+                            <div>
+                                <label for="color">Color</label>
+                            </div>
+                            <input type="color" class="validate" name="color" #color="ngModel" [(ngModel)]="monitoresservice.selectedMonitor.color">
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="input-field col s12 m6">
+                    <label>Images in select</label>
+                    </div> -->
+                    
+                    <div class="card-action row">
+                        <!-- (click)="addMonitor(monitorForm)" -->
+                        <a class="btn left" (click)="addMonitor(monitorForm)">Guardar
+                            <i class="material-icons right"> save </i>
+                        </a>
+                        <a class="btn right"  (click)="resetForm(monitorForm)">Reiniciar
+                            <i class = "material-icons right"> clear_all </i> 
+                        </a>
+                        
+                    </div>
+                </div>
+                <!-- Para que funcione  -->
+                <button hidden></button> 
+            </form>
+        </div>
+    </div>
+   
+<div class="">
+    <div class="row">
+        <div class="col s12 offset-s1">
+            <table>
+                <thead>
+                    <th>ID</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Tipo de Panel</th>
+                    <th>Frecuencia</th>
+                    <th>Descripcion</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th class="col s12 m7">
+                        <div>
+                            <label for="">BUSCAR:</label>
+                            <input type="text" [(ngModel)]="busqueda"> 
+                        </div>
+                        <div>
+                            <select [(ngModel)]="criterio" >
+                                <option value="" disabled selected>Buscar por:</option>
+                                <option value="TODOS">TODOS</option>
+                                <option value="ID">ID</option>
+                                <option value="MARCA">MARCA</option>
+                                <option value="MODELO">MODELO</option>
+                                <option value="TIPO_PANEL">TIPO DE PANEL</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button class="btn" (click)="buscar()">Buscar</button>
+                        </div>
+                    </th>
+                <tbody>
+
+                    <tr *ngFor="let monitor of monitoresservice.monitores">
+                        <td> {{monitor._id}} </td>
+                        <td> {{monitor.marca}} </td>
+                        <td> {{monitor.modelo}} </td>
+                        <td> {{monitor.tipo_panel}} </td>
+                        <td> {{monitor.frecuencia}} </td>
+                        <td> {{monitor.descripcion}} </td>
+                        <td> {{monitor.cantidad}} </td>
+                        <td> {{monitor.precio}} </td>
+                        <td>
+                            <a (click)="editMonitor(monitor)" class="btn">
+                                <i class="material-icons">edit</i>
+                            </a>
+                           
+                            <a (click)="deleteMonitor(monitor._id)" class="btn">
+                                <i class="material-icons">delete</i>
+                            </a>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>

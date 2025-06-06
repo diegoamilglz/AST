@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+<div class="container" style="margin-top: 50px;">
+    <div class="row">
+        <div class="centrar col s8 offset-s2">
+            <table class="row">
+                <thead>
+                    <th>ID</th>
+                    <th>NOMBRE</th>
+                    <th>ROL</th>
+                    <th class="input-field col s4">
+                    <div>
+                            <label for="" style="font-size: 14px;">Tu ID de Administrador:</label>
+                            <!-- (input)="buscar()" -->
+                            <input  type="text" [(ngModel)]="busqueda"> 
+                        </div> 
+                        <div>
+                            <!-- (change)="buscar()" -->
+                            <select [(ngModel)]="criterio" >
+                                <option value="" disabled selected>Buscar por:</option>
+                                <option value="TODOS" >TODOS</option>
+                                <option value="Administrador">ADMINISTRADORES</option>
+                                <option value="Cliente">CLIENTES</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button class="btn" (click)="buscar()">Buscar</button>
+                        </div> 
+                    </th>
+
+
+                <tbody>
+                    <tr *ngFor="let usuario of usuarioServices.usuarios">
+                        <td> {{usuario._id}} </td>
+                        <td> {{usuario.nombre}} </td>
+                        <td> {{usuario.role}} </td>
+                        <td>
+                            <a (click)="editUsuario(usuario)" class="btn">
+                                <i class="material-icons">edit</i>
+                            </a>
+                            
+                            <a (click)="deleteUsuario(usuario._id)" class="btn">
+                                <i class="material-icons">delete</i>
+                            </a>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

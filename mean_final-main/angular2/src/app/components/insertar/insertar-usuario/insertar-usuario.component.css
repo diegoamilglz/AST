@@ -1,0 +1,10 @@
+select{
+    display: block;
+}
+/* Cambiar la posición de los toasts a la parte superior */
+
+/* #toast-container {
+    position: fixed !important;
+    bottom: 0px !important;
+    left: 0px !important;
+} */

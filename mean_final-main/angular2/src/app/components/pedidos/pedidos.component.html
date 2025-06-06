@@ -1,0 +1,120 @@
+<app-navbar></app-navbar>
+
+<div class="container " style="margin-top: 50px;">
+    <div class="row">
+        <div class="col s12 ">
+            <div  style="display: flex; align-items: center; gap: 30px; "  >
+                <div >
+                <label for="" style="font-size: 16px;">Tu ID de cliente:</label>
+                <input  type="text" [(ngModel)]="ID_cliente"> 
+                </div>
+                <div>
+                    <label for="">Término de búsqueda:</label>
+                    <input  type="text" [(ngModel)]="busqueda"> 
+                </div>
+                <div>
+                    <select [(ngModel)]="criterio" >
+                        <option value="" disabled>Buscar por:</option>
+                        <option value="TODOS" selected>TODOS</option>
+                        <option value="ID">ID</option>
+                        <!-- <option value="ID ARTICULO">ID ARTICULO</option> -->
+                    </select>
+                    <div>
+                        <button class="btn" (click)="buscar()">Buscar</button>
+                    </div> 
+                </div>
+                
+<!--                 <div>
+                    <button class="btn" (click)="getPedidos()">Todos</button>
+                </div> -->
+            </div>
+            
+            <table>
+                <thead>
+                    <th>ID</th>
+                    <th>ID Cliente</th>
+                    <th>Nombre Cliente</th>
+                    <th>ID Articulo</th>
+                    <th>Cantidad</th>
+                    <th>Dirección de envio</th>
+                    <th>Fecha de envio</th>
+                    <th>Modificado</th>
+                <tbody>
+
+                    <tr *ngFor="let pedido of pedidoService.pedidos">
+                        <td>   {{pedido._id}}  </td>
+                        <td> {{pedido.id_usuario}} </td>
+                        <td> {{pedido.nombre}} </td>
+                        <td> {{pedido.id_articulo}} </td>
+                        <td> {{pedido.cantidad}} </td>
+                        <td> {{pedido.direccion_de_envio}} </td>
+                        <td> {{pedido.fecha_pedido}} </td>
+                        <td> {{pedido.modificado}} </td>
+                        <td>
+                            <a (click)="editPedido(pedido)" class="btn">
+                                <i class="material-icons">edit</i>
+                            </a>
+                            
+                        </td>
+                        <td>
+                            <a (click)="deletePedido(pedido)" class="btn">
+                            <i class="material-icons">delete</i>
+                            </a>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class=" card ">
+        <div class=" card-content col s6 offset-s3">
+            <form #clienteForm="ngForm" novalidate (ngSubmit)="addPedido(clienteForm) ">
+                <div class="row">
+                    <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="pedidoService.selectedPedido._id">
+                    
+                        <div class="row">
+<!--                         <div class="input-field col s6">
+                            <input required class="validate" type="text"  [(ngModel)]="id_cliente">
+                            <label>ID de verificación</label>
+                            </div> -->
+<!--                             <div class="col s6">
+                                <input required class="validate" type="text" name="ID_bis" #ID_bis="ngModel" [(ngModel)]="ID_bis">
+                                <label>Tu ID, de nuevo</label>
+                            </div> -->
+                            <div class="col s6">
+                                <input required class="validate" type="text" name="nombre" #nombre="ngModel" [(ngModel)]="pedidoService.selectedPedido.nombre">
+                                <label>Nombre</label>
+                            </div>
+
+                            <div class="col s6">
+                                <input required class="validate" type="text" name="direccion_de_envio" #direccion_de_envio="ngModel" [(ngModel)]="pedidoService.selectedPedido.direccion_de_envio">
+                                <label>Dirección de envio</label>
+                            </div>
+                            <div class="col s6">
+                                <input required class="validate" type="text" name="modificado" #modificado="ngModel" [(ngModel)]="pedidoService.selectedPedido.modificado">
+                                <label>Modificado</label>
+                            </div>
+                        </div>
+
+                    
+                    
+                    <div class="card-action row s12">
+                        <!-- (click)="addCliente(clienteForm)" -->
+                        <a class="btn left" (click)="addPedido(clienteForm)">Editar
+                            <i class="material-icons right"> edit </i>
+                        </a>
+<!--                         <a class="btn right"  (click)="resetForm(clienteForm, 1)">Resetear
+                            <i class = "material-icons right"> clear_all </i> 
+                        </a> -->
+                        
+                    </div>
+                </div>
+                <!-- Para que funcione  -->
+                <button hidden></button> 
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+<app-navbar></app-navbar>
+
+<div class="row">
+    <div class=" card ">
+        <div class=" card-content col s6 offset-s3">
+            <h5 class="center-align" >Insertar Usuario</h5>
+            <form #usuarioForm="ngForm" novalidate (ngSubmit)="addUsuario(usuarioForm) ">
+                <div class="row">
+                    <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="usuarioService.selectedUsuario._id">
+                    
+                    <div class="row">
+                        <div class="col s6">
+                            <input required class="validate" type="text" name="nombre" #marca="ngModel" [(ngModel)]="usuarioService.selectedUsuario.nombre" placeholder="Nombre">
+                            <label>Nombre</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <select ngDefaultControl class="browser-default"  name="role" #cualquiercosa="ngModel" [(ngModel)]="usuarioService.selectedUsuario.role" >
+                                <!-- <option value="" disabled selected></option> -->
+                                <option value="Administrador">Administrador</option>
+                                <option value="Cliente">Cliente</option>
+                            </select> 
+                        </div>
+                    </div> 
+                    
+                    <div class="card-action row">
+                        <!-- (click)="addUsuario(usuarioForm)" -->
+                        <a class="btn left" (click)="addUsuario(usuarioForm)">Guardar
+                            <i class="material-icons right"> save </i>
+                        </a>
+<!--                         <a class="btn right"  (click)="resetForm(usuarioForm, 1)">Resetear
+                            <i class = "material-icons right"> clear_all </i> 
+                        </a> -->
+                        
+                    </div>
+                </div>
+                <!-- Para que funcione  -->
+                <button hidden></button> 
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="row">
+
+        <h5 class="center-align">Eliminar Cuenta</h5>
+        <div class="centrar col s8 offset-s3">
+            <div class="offset-s3">
+            <table class="row ">
+                <thead>
+                    <th>ID</th>
+                    <th>NOMBRE</th>
+                    <th>ROL</th>
+                    <th class="input-field col s5 ">
+                        <div>
+                            <label for="" style="font-size: 15px">Introduce tu ID:</label>
+                            <input (input)="buscar()" type="text" [(ngModel)]="busqueda"> 
+                        </div>
+<!--                         <div>
+                            <button class="btn" (click)="buscar()">Buscar</button>
+                        </div>  -->
+<!--                         <div>
+                            <select [(ngModel)]="criterio" (change)="buscar()">
+                                <option value="" disabled selected>Buscar por:</option>
+                                <option value="ID">ID</option>
+                                <option value="NOMBRE">NOMBRE</option>
+                            </select>
+                        </div> 
+                        <div>
+                            <button class="btn" (click)="getUsuarios()">Mostrar Todos</button>
+                        </div>-->
+                    </th>
+
+
+                <tbody >
+                    <tr *ngFor="let usuario of usuarioService.usuarios">
+                        <td> {{usuario._id}} </td>
+                        <td> {{usuario.nombre}} </td>
+                        <td> {{usuario.role}} </td>
+                        <td>
+
+                            <a (click)="deleteUsuario(usuario._id)" class="btn">
+                                <i class="material-icons">delete</i>
+                            </a>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>

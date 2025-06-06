@@ -1,0 +1,10 @@
+select{
+    display: block;
+}
+/* Cambiar la posición de los toasts a la parte superior 
+/* #toast-container {
+    top: 10px; /* Distancia desde la parte superior 
+    right: 50%; /* Centrar horizontalmente 
+    transform: translateX(50%); /* Ajustar para centrar 
+    bottom: auto; /* Deshabilitar la posición inferior 
+  } */

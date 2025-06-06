@@ -1,0 +1,12 @@
+.separar{
+    display: flow-root;
+}
+
+.container{
+    max-height: 1000rem;
+}
+
+select{
+    display: block;
+}
+
